@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE || 'https://my-flask-api.loca.lt/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'https://hhs-hotel-demo-back-422si.ondigitalocean.app/api'
 import { useNavigate } from 'react-router-dom';
 
 async function request(path, opts = {}) {

@@ -16,7 +16,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!token) return;
-    fetch('https://my-flask-api.loca.lt/api/hotels', {
+    fetch('https://hhs-hotel-demo-back-422si.ondigitalocean.app/api/hotels', {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
