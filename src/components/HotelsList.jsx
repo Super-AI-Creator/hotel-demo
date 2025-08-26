@@ -46,7 +46,7 @@ export default function HotelsList({ hotels, onChange }) {
                 <CardMedia
                   component="img"
                   sx={{ width: 140, filter: 'brightness(0.7)' }}
-                  image={`/src/assets/hotel/${index + 1}.png`}
+                  image={`/hotel/${index + 1}.png`}
                   alt={`Hotel ${h.name}`}
                 />
                 <Box component={Paper} elevation={0} sx={{ flex: 1, padding: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -76,7 +76,7 @@ export default function HotelsList({ hotels, onChange }) {
                   <CardMedia
                     component="img"
                     sx={{ height: '100%', objectFit: 'cover', filter: 'brightness(0.7)' }}
-                    image={`/src/assets/hotel/${(index + 1) % 8 + 1}.png`} // Use a different image for the right side
+                    image={`/hotel/${(index + 1) % 8 + 1}.png`} // Use a different image for the right side
                     alt={`Hotel ${h.name} - Right`}
                   />
                 </motion.div>
