@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE || 'https://hhs-hotel-back-z2nz6.ondigitalocean.app/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://hhs-hotel-demo-server-bbv3y.ondigitalocean.app/api'
 import { useNavigate } from 'react-router-dom';
 
 async function request(path, opts = {}) {

@@ -16,7 +16,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!token) return;
-    fetch('https://hhs-hotel-back-z2nz6.ondigitalocean.app/api/hotels', {
+    fetch('http://hhs-hotel-demo-server-bbv3y.ondigitalocean.app/api/hotels', {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
