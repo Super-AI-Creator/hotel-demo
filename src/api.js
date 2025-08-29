@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:5000/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'https://hhs-hotel-demo-backend-2ysyg.ondigitalocean.app/api'
 // 'https://hhs-hotel-demo-backend-2ysyg.ondigitalocean.app/api'
 import { useNavigate } from 'react-router-dom';
 

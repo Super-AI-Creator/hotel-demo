@@ -17,7 +17,7 @@ export default function Dashboard() {
     if (!token) return;
     const storedPMS = localStorage.getItem('pms');
     const payload = {"pms":storedPMS}
-    fetch('http://127.0.0.1:5000/api/hotels/list_hotels', {
+    fetch('https://hhs-hotel-demo-backend-2ysyg.ondigitalocean.app/api/hotels/list_hotels', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
