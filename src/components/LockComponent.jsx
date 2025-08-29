@@ -14,7 +14,9 @@ export default function LockComponent({ hotel }) {
 
   const get_lock_data = async () => {
     try {
-      const lock_response = await getLockData(hotel.hotel_id);
+      const storedPMS = localStorage.getItem('pms');
+      const payload = {"pms":storedPMS}
+      const lock_response = await getLockData(hotel.hotel_id,payload);
       setLocks(lock_response.data);
     } catch (error) {
       console.error('Error fetching lock data:', error);
@@ -23,7 +25,9 @@ export default function LockComponent({ hotel }) {
 
   const get_room_data = async () => {
     try {
-      const room_response = await getRoomData(hotel.hotel_id);
+      const storedPMS = localStorage.getItem('pms');
+      const payload = {"pms":storedPMS}
+      const room_response = await getRoomData(hotel.hotel_id, payload);
       setRooms(room_response.data);
 
       let initialLocks = {};

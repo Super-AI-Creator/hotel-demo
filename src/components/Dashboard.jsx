@@ -4,7 +4,6 @@ import HotelsList from './HotelsList';
 import { Box, Typography, Card, CircularProgress } from '@mui/material';
 import { Hotel } from '@mui/icons-material';
 import { motion } from 'framer-motion';
-import { getAuto } from '../api';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -16,11 +15,15 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!token) return;
-    fetch('https://hhs-hotel-demo-backend-2ysyg.ondigitalocean.app/api/hotels', {
+    const storedPMS = localStorage.getItem('pms');
+    const payload = {"pms":storedPMS}
+    fetch('http://127.0.0.1:5000/api/hotels/list_hotels', {
+      method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify(payload)
     })
       .then(res => {
         if (res.status === 401) {
@@ -41,10 +44,6 @@ export default function Dashboard() {
       });
   }, [token, navigate]);
 
-  const sendrequest = async () => {
-    const r = await getAuto();
-    console.log(r);
-  };
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>

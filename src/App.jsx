@@ -13,24 +13,37 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const [pmstoken, setPMSToken] = useState(localStorage.getItem('pms'));
   const [userName, setUserName] = useState(localStorage.getItem('user_name') || '');
   const [selectedTab, setSelectedTab] = useState(0);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('access_token');
-    const storedUserName = localStorage.getItem('user_name');
+    const storedToken = localStorage.getItem('token');
+    const storedPMS = localStorage.getItem('pms');
     setToken(storedToken);
-    setUserName(storedUserName || '');
+    setPMSToken(storedPMS);
+
+    if (!pmstoken) return;
 
     const interval = setInterval(async () => {
       try {
-        const response = await getAuto()
+        if (!pmstoken) return;
+        const storedPMS = localStorage.getItem('pms');
+        const payload = {"pms":storedPMS}
+        const response = await getAuto(payload)
         const data = response;
         // toast.success('Auto sync triggered successfully!');
         if(data.count>=1){
           data.processed.map((item)=>{
             toast.success(`Booking - ${item.booking} integrated with HHSLock just ago.`);
           })
+        }
+        if(data.count==-1){
+          toast.error(data.msg);
+        }
+        if(data.count==-2){
+          toast.success(data.msg);
+          localStorage.setItem('pms', data.token);
         }
         // toast.success('Auto sync triggered successfully!');
         // console.log('Auto sync response:', data);
@@ -51,15 +64,17 @@ function App() {
     else navigate("/pin_history");
   };
 
-  const handleLogin = (token) => {
-    localStorage.setItem('token', token);
+  const handleLogin = (token,pms) => {
+    // localStorage.setItem('token', token);
+
     setToken(token);
+    setPMSToken(pms)
     // navigate('/');
   };
 
   const logout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('user_name');
+    localStorage.removeItem('pms');
     setToken(null);
     setUserName('');
     navigate('/login');

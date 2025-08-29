@@ -1,4 +1,5 @@
-const API_BASE = import.meta.env.VITE_API_BASE || 'https://hhs-hotel-demo-backend-2ysyg.ondigitalocean.app/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:5000/api'
+// 'https://hhs-hotel-demo-backend-2ysyg.ondigitalocean.app/api'
 import { useNavigate } from 'react-router-dom';
 
 async function request(path, opts = {}) {
@@ -36,15 +37,14 @@ async function request(path, opts = {}) {
 export async function login(email, password) {
   return request('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) })
 }
-export async function register(email, password) {
-  return request('/auth/register', { method: 'POST', body: JSON.stringify({ email, password }) })
-}
-export async function listHotels() { return request('/hotels') }
-export async function getAuto() { return request('/sync/auto_trigger') }
-export async function getLockData(hotelId) { return request(`/hotels/${hotelId}/locks`) }
-export async function getRoomData(hotelId) { return request(`/hotels/${hotelId}/rooms`) }
+// export async function register(email, password) {
+//   return request('/auth/register', { method: 'POST', body: JSON.stringify({ email, password }) })
+// }
+// export async function listHotels() { return request('/hotels') }
+export async function getAuto(payload) { return request('/sync/auto_trigger', { method: 'POST', body: JSON.stringify(payload) }) }
+export async function getLockData(hotelId,payload) { return request(`/hotels/${hotelId}/locks`, { method: 'POST', body: JSON.stringify(payload) }) }
+export async function getRoomData(hotelId,payload) { return request(`/hotels/${hotelId}/rooms`, { method: 'POST', body: JSON.stringify(payload) }) }
 export async function getPinHistory() { return request('/sync/history') }
-export async function createHotel(payload) { return request('/hotels', { method: 'POST', body: JSON.stringify(payload) }) }
 export async function updateHotel(hotelId, payload) { return request(`/hotels/${hotelId}`, { method: 'PUT', body: JSON.stringify(payload) }) }
 export async function listDoors(hotelId) { return request(`/hotels/${hotelId}/doors`) }
 export async function addDoor(hotelId, payload) { return request(`/hotels/${hotelId}/doors`, { method: 'POST', body: JSON.stringify(payload) }) }
@@ -55,4 +55,10 @@ export async function listBookings(hotelId, payload) {
 }
 export async function setLockID(hotelId, payload) {
   return request(`/hotels/${hotelId}/setlock`, { method: 'POST', body: JSON.stringify(payload) })
+}
+export async function register(userId, password, inviteCode) {
+  return request('/auth/register', {
+    method: 'POST',
+    body: JSON.stringify({ userId, password, inviteCode }),
+  });
 }

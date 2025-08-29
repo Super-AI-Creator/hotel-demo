@@ -16,7 +16,8 @@ export default function SyncTrigger({ hotel }) {
 
   const runSync = async () => {
     setLoading((prev) => ({ ...prev, sync: true }));
-    const payload = { hotelId: hotel.hotel_id };
+    const storedPMS = localStorage.getItem('pms');
+    const payload = { hotelId: hotel.hotel_id , "pms":storedPMS};
 
     if (start) payload[startFilter] = start;
     if (end) payload[endFilter] = end;
@@ -31,7 +32,8 @@ export default function SyncTrigger({ hotel }) {
   const fetchBookings = async () => {
     setLoading((prev) => ({ ...prev, booking: true }));
     try {
-      const payload = { hotelId: hotel.hotel_id };
+      const storedPMS = localStorage.getItem('pms');
+      const payload = { hotelId: hotel.hotel_id , pms:storedPMS};
       if (start) payload[startFilter] = start;
       if (end) payload[endFilter] = end;
 

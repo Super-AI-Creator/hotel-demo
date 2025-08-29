@@ -55,12 +55,12 @@ export default function HotelsList({ hotels, onChange }) {
                   <Rating name="read-only" value={4} readOnly sx={{ marginBottom: 1 }} />
                   <Typography variant="body2">Timezone: {h.timezone} — Checkin: {h.checkInStart} — Checkout: {h.checkOutEnd}</Typography>
                   <Box sx={{ marginTop: 2, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                    <Button variant="outlined" color="primary" sx={{ marginBottom: 1 }} onClick={() => toggleComponent(h.id, 'booking')}>Booking List</Button>
+                    
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                       <IconButton onClick={() => setSelected(h)} color="primary">
                         <Edit />
                       </IconButton>
-                      <IconButton onClick={() => setSelected({ ...h, manageDoors: true })} color="primary" sx={{ marginLeft: 1 }}>
+                      <IconButton color="primary" sx={{ marginLeft: 1 }}>
                         <DoorFront />
                       </IconButton>
                       <IconButton onClick={() => toggleComponent(h.id, 'sync')} color="primary" sx={{ marginLeft: 1 }}>

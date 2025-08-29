@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createHotel, updateHotel } from '../api';
+import {updateHotel } from '../api';
 import { Box, Typography, Button, TextField, Select, MenuItem, Card, Grid } from '@mui/material';
 import { Business, AccessTime, VpnKey, Lock, LockOpen } from '@mui/icons-material';
 import { motion } from 'framer-motion';
@@ -16,7 +16,7 @@ export default function HotelForm({ hotel, onSaved }) {
     if (hotel && hotel.id) {
       await updateHotel(hotel.id, form);
     } else {
-      await createHotel(form);
+      // await createHotel(form);
     }
     onSaved && onSaved();
   };
